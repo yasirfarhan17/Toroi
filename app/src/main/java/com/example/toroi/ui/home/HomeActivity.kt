@@ -2,7 +2,7 @@ package com.example.toroi.ui.home
 
 import android.os.Bundle
 import coil.api.load
-import coil.transform.RoundedCornersTransformation
+import coil.transform.CircleCropTransformation
 import com.example.network_domain.network.model.DataItem
 import com.example.toroi.R
 import com.example.toroi.databinding.ActivityHomeBinding
@@ -41,9 +41,10 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
         with(binding) {
             name.text = item?.firstName
             email.text = item?.email
-            mobile.text = item?.phoneNumber
+            mobile.text = item?.phoneNumber?:"----------"
             profileImage.load(item?.avatar) {
-                RoundedCornersTransformation(5F)
+                transformations(CircleCropTransformation())
+                placeholder(R.drawable.add)
             }
             button.setOnClickListener {
                 navigator.startActivity(DetailsActivity::class.java)
