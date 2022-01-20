@@ -1,6 +1,7 @@
 package com.example.toroi.injection.component
 
 import com.example.toroi.injection.scope.ActivityScope
+import com.example.toroi.ui.details_view.DetailsActivity
 import com.example.toroi.ui.home.HomeActivity
 import dagger.Subcomponent
 
@@ -13,5 +14,6 @@ interface HomeComponent {
   }
 
   fun inject(activity: HomeActivity)
+  fun inject(activity: DetailsActivity)
 
 }

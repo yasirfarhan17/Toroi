@@ -1,24 +1,31 @@
 package com.example.toroi.ui.home
 
 import android.os.Bundle
+import com.example.network_domain.network.model.DataItem
 import com.example.toroi.R
 import com.example.toroi.databinding.ActivityHomeBinding
 import com.example.toroi.injection.component.AppComponent
 import com.example.toroi.ui.base.BaseActivity
-import com.example.toroi.ui.home.model.HomeCards
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
     override fun layoutId(): Int = R.layout.activity_home
-    private var homeList = ArrayList<HomeCards>()
+    private var item: DataItem? = null
 
     override fun getViewModelClass(): Class<HomeViewModel> = HomeViewModel::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getData()
         initUi()
         addListeners()
         addObservers()
+    }
+
+    private fun getData() {
+        if (intent.getParcelableExtra<DataItem>("ITEM") != null) {
+            item = intent.getParcelableExtra<DataItem>("ITEM")
+        }
     }
 
     override fun injectActivity(appComponent: AppComponent) {
@@ -28,6 +35,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
     }
 
     private fun initUi() {
+        with(binding) {
+            //set data from item to view
+        }
     }
 
     private fun addListeners() {

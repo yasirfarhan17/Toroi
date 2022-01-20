@@ -1,5 +1,7 @@
 package com.example.network_domain.network.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -19,6 +21,7 @@ data class Support(
     @SerialName("url") var url: String? = null
 )
 
+@Parcelize
 @Serializable
 data class DataItem(
     @SerialName("lastName") var lastName: String? = null,
@@ -26,4 +29,4 @@ data class DataItem(
     @SerialName("avatar") var avatar: String? = null,
     @SerialName("firstName") var firstName: String? = null,
     @SerialName("email") var email: String? = null
-)
+) : Parcelable
