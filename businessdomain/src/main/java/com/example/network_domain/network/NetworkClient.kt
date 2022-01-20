@@ -1,7 +1,6 @@
 package com.example.network_domain.network
 
 import android.content.Context
-import com.glocal.businessdomain.BuildConfig
 import com.example.network_domain.network.interceptors.HeaderInterceptor
 import com.example.network_domain.network.interceptors.NoInternetInterceptor
 import com.example.network_domain.network.util.NetworkManager
@@ -15,46 +14,45 @@ import java.util.concurrent.TimeUnit.SECONDS
 
 object NetworkClient {
 
-  private const val TIMEOUT_IN_SECONDS = 20L
-  private const val CONTENT_TYPE_APPLICATION = "application/json"
+    private const val TIMEOUT_IN_SECONDS = 20L
+    private const val CONTENT_TYPE_APPLICATION = "application/json"
 
-  fun provideRetrofit(
-    okHttpClient: OkHttpClient
-  ): Retrofit = Retrofit.Builder()
-      .baseUrl(BuildConfig.BASE_URL)
-      .addConverterFactory(getJson().asConverterFactory(CONTENT_TYPE_APPLICATION.toMediaType()))
-      .client(okHttpClient)
-      .build()
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient
+    ): Retrofit = Retrofit.Builder()
+        .baseUrl("https://reqres.in/")
+        .addConverterFactory(getJson().asConverterFactory(CONTENT_TYPE_APPLICATION.toMediaType()))
+        .client(okHttpClient)
+        .build()
 
-  private fun getJson() = Json {
-    isLenient = true
-    ignoreUnknownKeys = true
-  }
-
-  fun provideOkHttp(
-      context: Context,
-      headerInterceptor: HeaderInterceptor,
-      networkManager: NetworkManager
-  ): OkHttpClient {
-
-    val httpBuilder = OkHttpClient.Builder()
-
-    if (BuildConfig.DEBUG) {
-      httpBuilder.apply {
-        // addInterceptor(ChuckerInterceptor(context))
-        addInterceptor(HttpLoggingInterceptor().apply {
-          level = HttpLoggingInterceptor.Level.BODY
-        })
-      }
+    private fun getJson() = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
     }
 
-    httpBuilder.apply {
-      addInterceptor(NoInternetInterceptor(networkManager))
-      addInterceptor(headerInterceptor)
-      connectTimeout(TIMEOUT_IN_SECONDS, SECONDS)
-      writeTimeout(TIMEOUT_IN_SECONDS, SECONDS)
-      readTimeout(TIMEOUT_IN_SECONDS, SECONDS)
+    fun provideOkHttp(
+        context: Context,
+        headerInterceptor: HeaderInterceptor,
+        networkManager: NetworkManager
+    ): OkHttpClient {
+
+        val httpBuilder = OkHttpClient.Builder()
+
+
+        httpBuilder.apply {
+            // addInterceptor(ChuckerInterceptor(context))
+            addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
+        }
+
+        httpBuilder.apply {
+            addInterceptor(NoInternetInterceptor(networkManager))
+            addInterceptor(headerInterceptor)
+            connectTimeout(TIMEOUT_IN_SECONDS, SECONDS)
+            writeTimeout(TIMEOUT_IN_SECONDS, SECONDS)
+            readTimeout(TIMEOUT_IN_SECONDS, SECONDS)
+        }
+        return httpBuilder.build()
     }
-    return httpBuilder.build()
-  }
 }

@@ -5,7 +5,7 @@ import com.example.toroi.R
 import com.example.toroi.databinding.ActivityHomeBinding
 import com.example.toroi.injection.component.AppComponent
 import com.example.toroi.ui.base.BaseActivity
-import com.glocal.centerpatient.ui.home.model.HomeCards
+import com.example.toroi.ui.home.model.HomeCards
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 

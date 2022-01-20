@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.toroi.databinding.IndiviewHomeCardsBinding
-import com.glocal.centerpatient.ui.home.model.HomeCards
+import com.example.toroi.ui.home.model.HomeCards
 
 class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 

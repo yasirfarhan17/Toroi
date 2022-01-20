@@ -5,8 +5,7 @@ import com.facebook.stetho.Stetho
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 import com.example.toroi.injection.component.AppComponent
-import com.glocal.centerpatient.BuildConfig
-import com.glocal.centerpatient.injection.component.DaggerAppComponent
+import com.example.toroi.injection.component.DaggerAppComponent
 
 class BaseApplication : Application() {
   override fun onCreate() {

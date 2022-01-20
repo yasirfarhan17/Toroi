@@ -3,7 +3,7 @@ package com.example.toroi.injection.module
 import android.content.Context
 import android.net.ConnectivityManager
 import com.example.network_domain.network.NetworkClient
-import com.example.network_domain.network.api.LoginApi
+import com.example.network_domain.network.api.EmployeeApi
 import com.example.network_domain.network.interceptors.HeaderInterceptor
 import com.example.network_domain.network.util.NetworkManager
 import com.example.network_domain.storage.PrefsUtil
@@ -57,7 +57,7 @@ class NetworkModule {
     @Provides
     fun providePaymentApiService(
         retrofit: Retrofit
-    ): LoginApi = retrofit.create(LoginApi::class.java)
+    ): EmployeeApi = retrofit.create(EmployeeApi::class.java)
 
 
 }
