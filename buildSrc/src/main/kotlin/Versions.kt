@@ -9,6 +9,8 @@ object Versions {
 
     const val COROUTINES = "1.5.1"
 
+    const val COIL = "0.11.0"
+
     const val RETROFIT = "2.9.0"
     const val OK_HTTP = "4.9.0"
     const val GSON = "2.8.6"

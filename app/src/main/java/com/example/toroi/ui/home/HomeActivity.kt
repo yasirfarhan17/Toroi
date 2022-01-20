@@ -1,11 +1,14 @@
 package com.example.toroi.ui.home
 
 import android.os.Bundle
+import coil.api.load
+import coil.transform.RoundedCornersTransformation
 import com.example.network_domain.network.model.DataItem
 import com.example.toroi.R
 import com.example.toroi.databinding.ActivityHomeBinding
 import com.example.toroi.injection.component.AppComponent
 import com.example.toroi.ui.base.BaseActivity
+import com.example.toroi.ui.details_view.DetailsActivity
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
@@ -36,7 +39,15 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
     private fun initUi() {
         with(binding) {
-            //set data from item to view
+            name.text = item?.firstName
+            email.text = item?.email
+            mobile.text = item?.phoneNumber
+            profileImage.load(item?.avatar) {
+                RoundedCornersTransformation(5F)
+            }
+            button.setOnClickListener {
+                navigator.startActivity(DetailsActivity::class.java)
+            }
         }
     }
 

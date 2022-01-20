@@ -28,5 +28,6 @@ data class DataItem(
     @SerialName("id") var id: Int? = null,
     @SerialName("avatar") var avatar: String? = null,
     @SerialName("firstName") var firstName: String? = null,
-    @SerialName("email") var email: String? = null
+    @SerialName("email") var email: String? = null,
+    @SerialName("phoneNumber") var phoneNumber: String? = null
 ) : Parcelable

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+import coil.transform.RoundedCornersTransformation
 import com.example.network_domain.network.model.DataItem
 import com.example.toroi.databinding.IndiviewItemsBinding
 
@@ -26,6 +28,12 @@ class DetailsAdapter(private val callBack: DetailsAdapterCallBack) :
         fun bind(item: DataItem) {
             with(binding) {
                 cvRoot.setOnClickListener {
+                    tvEmail.text = item.email
+                    tvName.text = item.firstName + "  " + item.lastName
+                    tvPhone.text = item.phoneNumber
+                    profileImage.load(item.avatar) {
+                        RoundedCornersTransformation(5F)
+                    }
                     callBack.onItemClick(adapterPosition, item)
                 }
             }
